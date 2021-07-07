@@ -63,24 +63,25 @@ export class StationComponent implements OnInit, OnDestroy {
   convertDataToChart(station: Station): any {
     const results = [];
     for (const c in station.channels) {
-      const chan = station.channels[c];
+      if (station.channels[c]) {
+        const chan = station.channels[c];
 
-      const ch = {
-        name: chan.name,
-        series: []
-      };
+        const ch = {
+          name: chan.name,
+          series: []
+        };
 
-      for (const m of chan.measurements) {
-        const date = new Date(m.start + 'Z');
-        // adjusts for browsers wanting to use local time
-        const adjustedDate = new Date(date.getTime() + date.getTimezoneOffset() * 60000);
-        ch.series.push({
-          value: m.value,
-          name: adjustedDate
-        });
-
+        for (const m of chan.measurements) {
+          const date = new Date(m.start + 'Z');
+          // adjusts for browsers wanting to use local time
+          const adjustedDate = new Date(date.getTime() + date.getTimezoneOffset() * 60000);
+          ch.series.push({
+            value: m.value,
+            name: adjustedDate
+          });
+        }
+        results.push(ch);
       }
-      results.push(ch);
     }
     return results;
   }
@@ -89,7 +90,7 @@ export class StationComponent implements OnInit, OnDestroy {
   // Opens dialog to sort channels
   openStationDialog(): void {
     const results = this.convertDataToChart(this.activeStation);
-    const dialogRef = this.dialog.open(StationDialog, {
+    const dialogRef = this.dialog.open(StationDialogComponent, {
       data: {
         station: this.activeStation,
         metric: this.activeMetric,
@@ -105,14 +106,14 @@ export class StationComponent implements OnInit, OnDestroy {
 
 // Dialog for channel sorter
 @Component({
-  selector: 'station-dialog',
+  selector: 'app-station-dialog',
   templateUrl: './station.component.html',
   styleUrls: ['./station.component.scss']
 })
 
-export class StationDialog {
+export class StationDialogComponent {
   constructor(
-    public dialogRef: MatDialogRef<StationDialog>,
+    public dialogRef: MatDialogRef<StationDialogComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any) { }
 
     station = this.data.station;

@@ -15,7 +15,7 @@
 <mat-toolbar id="header" class="mat-elevation-z5" fxFlexLayout="column" >
   
   <ng-container *ngIf="activeMetric" >
-    <div class="title primary"> {{activeMetric.title}} Metric</div>
+    <div class="title primary" id="title"> {{activeMetric.title}} Metric</div>
   </ng-container>
   
   <ul id="query-info" *ngIf="query" fxFlex="auto" >

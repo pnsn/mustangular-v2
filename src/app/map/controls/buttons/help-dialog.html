@@ -3,60 +3,125 @@
 <mat-divider></mat-divider>
 
 <div mat-dialog-content id="help-dialog">
-  <p>MUSTANGular is an Angular application that displays station metrics from the IRIS MUSTANG service on a leaflet map. (Created by Pacific Northwest Seismic Network - PNSN - 2018)</p>
-  
-  <a href="https://github.com/pnsn/mustangular/wiki" target="_blank">See GitHub for more information.</a>
+  <p>
+    MUSTANGular is an Angular application that displays station metrics from the
+    IRIS MUSTANG service on a leaflet map. (Created by Pacific Northwest Seismic
+    Network - PNSN - 2018)
+  </p>
+
+  <a href="https://github.com/pnsn/mustangular/wiki" target="_blank"
+    >See GitHub for more information.</a
+  >
 
   <h2 id="generalinformation">General Information:</h2>
 
   <h3 id="data">Data:</h3>
 
-  <p>The metric information is from the <a href="https://service.iris.edu/mustang/metrics/1" target="_blank">IRIS MUSTANG metric service</a>. <br />
-  The station data is from the <a href="https://service.iris.edu/fdsnws/station/1/" target="_blank">IRIS FDNSWS service</a>. <br />
-  The measurements information is from the <a href="https://service.iris.edu/mustang/measurements/1" target="_blank">IRIS MUSTANG measurements service</a>.  </p>
+  <p>
+    The metric information is from the
+    <a href="https://service.iris.edu/mustang/metrics/1" target="_blank"
+      >IRIS MUSTANG metric service</a
+    >. <br />
+    The station data is from the
+    <a href="https://service.iris.edu/fdsnws/station/1/" target="_blank"
+      >IRIS FDNSWS service</a
+    >. <br />
+    The measurements information is from the
+    <a href="https://service.iris.edu/mustang/measurements/1" target="_blank"
+      >IRIS MUSTANG measurements service</a
+    >.
+  </p>
 
-  <h3 id="channelpriority">Channel Priority:</h3>
+  <h3 id="channelvalue">Channel Value (across timespan)</h3>
 
-  <p>The display channel is selected based on the user's prioritization of the channels. MUSTANGular will display data for a station using the first channel, in order of the prioritized list, that has data. </p>
-
-  <h3 id="displayvalues">Display Values:</h3>
-
-  <p>MUSTANGular displays data for a station using one channel at a time. (See: Channel Priority) The display value indicates what value is shown for the station. Possible values are: </p>
+  <p>
+    MUSTANGular displays data for a station using one channel at a time. (See:
+    see Display Value) The channel value is the aggregate of all of a channel's measurements.
+    Possible values are:
+  </p>
   <ul>
     <li>maximum : highest measurement for the channel</li>
     <li>minimum : lowest measurement for the channel</li>
-    <li>average : average of the measurements for the channel </li>
-    <li>median : median of the measurements for the channel </li>
+    <li>average : average of the measurements for the channel</li>
+    <li>median : median of the measurements for the channel</li>
     <li>5th_percentile : 5th percentile of the measurements for the channel</li>
     <li>95th_percentile : 95th percentile of measurements for the channel</li>
   </ul>
 
+
+  <h3 id="displayvalue">Display Value</h3>
+
+  <p>
+    MUSTANGular displays data for a station using one channel at a time. (See:
+    see Display Value) The channel value is the aggregate of all of a channel's measurements.
+    Possible values are:
+  </p>
+  <ul>
+    <li>Channel Priority : shows a single channel, chosen by the user</li>
+    <li>Aggregate Channels : agregates all channel values to a single value</li>
+  </ul>
+
+  <h3 id="channelpriority">Channel Priority:</h3>
+
+  <p>
+    This display value option shows a single channel. The display channel is selected based on the user's prioritization of the
+    channels. MUSTANGular will display data for a station using the first
+    channel, in order of the prioritized list, that has data.
+  </p>
+
+  <h3 id="channelaggregate">Channel Aggregate:</h3>
+
+  <p>
+    This display value option combines all of the channel aggregates into a single value. Options are:
+  </p>
+
+  <ul>
+    <li>maximum : highest measurement for the channel</li>
+    <li>minimum : lowest measurement for the channel</li>
+    <li>most extreme : maximum value of the absolute values</li>
+  </ul>
+
   <h3 id="binning">Binning:</h3>
 
-  <p>The coloring of icons is determined by sorting all of the displayed values into bins. The upper and lower limits of binned values and the number of bins are selected by the user. The bins are even in width and inclusive at the lower and the upper boundary. Any values that are outside of the limits of the bins are categorized as high or low outliers.</p>
+  <p>
+    The coloring of icons is determined by sorting all of the displayed values
+    into bins. The upper and lower limits of binned values and the number of
+    bins are selected by the user. The bins are even in width and inclusive at
+    the lower and the upper boundary. Any values that are outside of the limits
+    of the bins are categorized as high or low outliers.
+  </p>
 
   <h3 id="key">Key:</h3>
 
-  <p>The key has checkboxes for each "bin" that allows users to toggle the corresponding values on the map. The histogram on the key represents the proportion of stations that fall into that bin.</p>
-  
+  <p>
+    The key has checkboxes for each "bin" that allows users to toggle the
+    corresponding values on the map. The histogram on the key represents the
+    proportion of stations that fall into that bin.
+  </p>
+
   <h3>Station Markers:</h3>
 
-  <p> Hovering over a dot on the map will show a list of channels available for that metric and the channel used for display (in green).</p>
+  <p>
+    Hovering over a dot on the map will show a list of channels available for
+    that metric and the channel used for display (in green).
+  </p>
 
   <h3>Station Chart:</h3>
 
-  <p>Clicking on a station will show a graph of the metric data over the selected time range.</p>
-  
+  <p>
+    Clicking on a station will show a graph of the metric data over the selected
+    time range.
+  </p>
+
   <h3>Copy Link:</h3>
 
   <p>Saves a link to the current metric view to the user's clipboard.</p>
-  
+
   <h3>Download:</h3>
 
   <p>Opens the data in format of the selected file type in a new tab.</p>
-
 </div>
 
-<div mat-dialog-actions  fxLayoutAlign="end">
- <button mat-raised-button mat-dialog-close>Done</button>
+<div mat-dialog-actions fxLayoutAlign="end">
+  <button mat-raised-button mat-dialog-close>Done</button>
 </div>

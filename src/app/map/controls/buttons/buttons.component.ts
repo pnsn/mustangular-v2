@@ -45,7 +45,7 @@ export class ButtonsComponent implements OnInit {
 
   // Opens dialog to select download type
   openDownloadDialog(): void {
-    const dialogRef = this.dialog.open(DownloadDialog, {
+    const dialogRef = this.dialog.open(DownloadDialogComponent, {
       data: {url: 'test'}
     });
 
@@ -62,7 +62,7 @@ export class ButtonsComponent implements OnInit {
 
   // Opens help dialog
   openHelpDialog(): void {
-    const dialogRef = this.dialog.open(HelpDialog, {
+    const dialogRef = this.dialog.open(HelpDialogComponent, {
       data: {url: 'test'}
     });
   }
@@ -71,13 +71,13 @@ export class ButtonsComponent implements OnInit {
 
 // Dialog for download type selector
 @Component({
-  selector: 'download-dialog',
+  selector: 'app-download-dialog',
   templateUrl: './download-dialog.html',
   styleUrls: ['./buttons.component.scss']
 })
-export class DownloadDialog {
+export class DownloadDialogComponent {
   constructor(
-    public dialogRef: MatDialogRef<DownloadDialog>,
+    public dialogRef: MatDialogRef<DownloadDialogComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any) { }
 
     types = ['xml', 'csv', 'text', 'json'];
@@ -86,13 +86,13 @@ export class DownloadDialog {
 
 // Dialog for help information
 @Component({
-  selector: 'help-dialog',
+  selector: 'app-help-dialog',
   templateUrl: './help-dialog.html',
   styleUrls: ['./buttons.component.scss']
 })
-export class HelpDialog {
+export class HelpDialogComponent {
   constructor(
-    public dialogRef: MatDialogRef<HelpDialog>,
+    public dialogRef: MatDialogRef<HelpDialogComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any) { }
 
 }

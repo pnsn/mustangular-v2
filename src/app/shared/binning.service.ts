@@ -145,7 +145,7 @@ export class BinningService {
       bins.push( new Bin (0, coloring.outliers[1], 1, 'icon-group-' + (binning.count + 1), data.max, max));
 
       // No data
-      bins.push( new Bin (0, coloring.outliers[2], 2, 'no-data' + (binning.count + 2), 0 , 0));
+      bins.push( new Bin (0, coloring.outliers[2], 2, 'no-data-' + (binning.count + 2), 0 , 0));
 
       return bins;
     }

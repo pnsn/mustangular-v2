@@ -1,22 +1,22 @@
 @import "styles.scss";
 
-.section-title {
-  font-size: 20px;
-  font-weight: 400;
-}
-
 #metric-section {
   padding: 10px 15px;
   overflow: hidden;
 }
-
+.section-title {
+  mat-icon {
+    font-size: 1em;
+    color: $secondary;
+  }
+}
 .select-active {
   display: inline-flex;
   flex-direction: column;
+}
 
-  mat-radio-button {
-    margin: 5px;
-  }
+mat-radio-button {
+  margin: 5px;
 }
 
 .form-body {
@@ -48,6 +48,8 @@
 }
 
 #openChannelsDialog{
+  max-width: 250px;
+  overflow: auto;
   border-radius: 2px;
   border: solid 1px $border;
   padding: 10px;
@@ -57,39 +59,3 @@
     background-color: $background;
   }
 }
-
-//Channels Dialog
-.mat-dialog-title{
-  margin-bottom: 5px;
-}
-
-#channels-list {
-  min-height: 40px;
-}
-
-mat-list {
-  mat-list-item{
-    border-top:dotted 1px $border;
-    border-bottom: none;
-    height: 35px;
-  }
-  .handle{
-    margin-right: 40px;
-    margin-left:-16px;
-  }
-   cursor: move;
-
-  /* ghostClass */
-  .ghost {
-    opacity: .5;
-  }
-  /* chosenClass */
-  .chosen {
-    border: none;
-    background-color: $background;
-  }
-  .mat-list-icon {
-    color: $secondary;
-  }
-}
-

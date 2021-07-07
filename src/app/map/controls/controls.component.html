@@ -16,33 +16,74 @@
     
 
     <div class="form-body" fxLayout="column">
-        <div class="form-title"> Options for {{activeMetric.title}}</div>
-        
-        <div class="form-section channels-dialog" fxFlex="100">
-            <div class="section-title">Channel Priority</div>
-            <span class="status">Click to prioritize</span>
-            
-            <div (click)="openChannelsDialog()" id="openChannelsDialog">
-              <ng-container *ngFor="let channel of display.channels.active; let i = index"> 
-                <span *ngIf="i > 0"> > </span>
-                <span> {{i + 1}}. {{ channel }}</span>
-              </ng-container>
-            </div>
+        <div class="form-title">Options for {{activeMetric.title}}</div>
 
-        </div>
-        
-        <mat-divider></mat-divider>
-        
         <div class="form-section" fxLayout="column">
-            <div class="section-title">Value</div>
-            
-            <mat-select id="displayDropdown" [(ngModel)]="display.displayValue" (ngModelChange)="valueChanged()" name="value">
+            <div class="section-title">Channel Value Across Timespan
+                <mat-icon
+                matTooltipPosition="above"
+                matTooltip="Value calculated for each channel for all data"
+            >help_outline</mat-icon>
+            </div>
+            <mat-select id="displayDropdown" [(ngModel)]="display.displayValue" (ngModelChange)="valueChanged()" name="displayValue">
                 <mat-option *ngFor="let value of displayValues" [value]="value">
                     {{ value | removeUnderscore }}
                 </mat-option>
             </mat-select>
             
         </div>
+
+        <mat-divider></mat-divider>
+
+        <div class="form-section channels-dialog" fxLayout="column" >
+            <div class="section-title">Display Value for Co-Located Channels 
+                <mat-icon
+                    color="secondary"
+                    matTooltipPosition="above"
+                    matTooltip="Value shown on the map for a station"
+                >help_outline</mat-icon>
+            </div>
+            <label for="colocated-select"></label>
+            <mat-radio-group
+                aria-labelledby="colocated-select"
+                class="example-radio-group"
+                [(ngModel)]="display.colocatedType"
+                name="colocated-select"
+                (ngModelChange)="valueChanged()"
+                >
+                <mat-radio-button value="channel">
+                    <div>
+                        Display single channel
+                        <span class="status">Click box to prioritize</span>
+                    </div>
+                    <div (click)="openChannelsDialog()" id="openChannelsDialog">
+                        <ng-container *ngFor="let channel of display.channels.active; let i = index"> 
+                          <span *ngIf="i > 0"> > </span>
+                          <span> {{i + 1}}. {{ channel }}</span>
+                        </ng-container>
+                      </div>
+                </mat-radio-button>
+    
+                <mat-radio-button value="aggregate">
+                    <div>
+                        Aggregate channels
+                    </div>
+                    <div>
+                        <mat-select id="aggregateDropdown" [(ngModel)]="display.aggregateValue" (ngModelChange)="valueChanged()" name="aggregateValue">
+                            <mat-option *ngFor="let value of aggregateValues" [value]="value">
+                                {{ value | removeUnderscore }}
+                            </mat-option>
+                        </mat-select>
+                    </div>
+                </mat-radio-button>
+            </mat-radio-group>
+
+
+
+        </div>
+
+
+        <mat-divider></mat-divider>
 
         <div class="form-section" fxLayout="column" fxFlex="100">
             <div class="section-title">Binning </div>

@@ -1,12 +1,14 @@
 // Component handles the right side form controls
 // Contains popups for sorting channels
 
-import { Component, OnInit, SimpleChanges, Inject} from '@angular/core';
+import { Component, OnInit} from '@angular/core';
 import { Metric } from '../metric';
 import { DataService } from '../../shared/data.service';
 import { Display } from '../display';
-import { MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material';
+import { MatDialog} from '@angular/material';
 import { ParametersService } from '../../shared/parameters.service';
+import { ChannelsDialogComponent } from './channels-dialog/channels-dialog.component';
+
 @Component({
   selector: 'app-controls',
   templateUrl: './controls.component.html',
@@ -33,6 +35,12 @@ export class ControlsComponent implements OnInit {
     '95th_Percentile'
   ]; // All possible display values for select
 
+  aggregateValues: Array<string> = [
+    'Minimum',
+    'Maximum',
+    'Most_Extreme'
+  ]; // Aggregate options
+
   ngOnInit() {
     // Subscribe to changes of the active metric and update display/metric data
     this.dataService.getActiveMetric().subscribe(
@@ -47,10 +55,11 @@ export class ControlsComponent implements OnInit {
 
   // Opens dialog to sort channels
   openChannelsDialog(): void {
-    const dialogRef = this.dialog.open(ChannelsDialog, {
+    const dialogRef = this.dialog.open(ChannelsDialogComponent, {
 
       data: {
         channels: this.display.channels.available,
+        activeChannels: this.display.channels.active,
         options: {
           onUpdate: (event: any) => {
             // this.valueChanged();
@@ -106,17 +115,3 @@ export class ControlsComponent implements OnInit {
   }
 }
 
-// Dialog for channel sorter
-@Component({
-  selector: 'channels-dialog',
-  templateUrl: './channels-dialog.html',
-  styleUrls: ['./controls.component.scss']
-})
-export class ChannelsDialog {
-  constructor(
-    public dialogRef: MatDialogRef<ChannelsDialog>,
-    @Inject(MAT_DIALOG_DATA) public data: any) { }
-
-    channels = this.data.channels;
-    channelSorterOptions = this.data.options;
-}

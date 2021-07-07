@@ -10,7 +10,7 @@ import { HttpClientModule, HttpClientJsonpModule} from '@angular/common/http';
 import { BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import { MapComponent } from './map/map.component';
 import { FormComponent } from './form/form.component';
-import { StationComponent , StationDialog} from './map/markers/station/station.component';
+import { StationComponent , StationDialogComponent} from './map/markers/station/station.component';
 import { FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { MakeMarkersService } from './shared/make-markers.service';
@@ -42,11 +42,11 @@ import {
 } from '@angular/material';
 import { SortablejsModule } from 'angular-sortablejs';
 import { MarkersComponent } from './map/markers/markers.component';
-import { ControlsComponent, ChannelsDialog} from './map/controls/controls.component';
+import { ControlsComponent} from './map/controls/controls.component';
 import { AngularFontAwesomeModule } from 'angular-font-awesome';
 import { ColorPickerModule} from 'ngx-color-picker';
 import { KeyComponent } from './map/controls/key/key.component';
-import { ButtonsComponent, DownloadDialog, HelpDialog} from './map/controls/buttons/buttons.component';
+import { ButtonsComponent, DownloadDialogComponent, HelpDialogComponent} from './map/controls/buttons/buttons.component';
 import { NgxChartsModule } from '@swimlane/ngx-charts';
 import { LocationStrategy, HashLocationStrategy } from '@angular/common';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
@@ -54,6 +54,7 @@ import { ColoringComponent } from './map/controls/coloring/coloring.component';
 import { RemoveUnderscorePipe } from './remove-underscore.pipe';
 import { LoadingComponent } from './map/loading/loading.component';
 import { StationsService } from './shared/stations.service';
+import { ChannelsDialogComponent } from './map/controls/channels-dialog/channels-dialog.component';
 
 @NgModule({
   declarations: [
@@ -63,10 +64,10 @@ import { StationsService } from './shared/stations.service';
     StationComponent,
     MarkersComponent,
     ControlsComponent,
-    ChannelsDialog,
-    DownloadDialog,
-    StationDialog,
-    HelpDialog,
+    ChannelsDialogComponent,
+    DownloadDialogComponent,
+    StationDialogComponent,
+    HelpDialogComponent,
     KeyComponent,
     ButtonsComponent,
     ColoringComponent,
@@ -116,7 +117,7 @@ import { StationsService } from './shared/stations.service';
     DataService,
     {provide: LocationStrategy, useClass: HashLocationStrategy}
   ],
-  entryComponents: [ChannelsDialog, DownloadDialog, StationDialog, HelpDialog],
+  entryComponents: [ChannelsDialogComponent, DownloadDialogComponent, StationDialogComponent, HelpDialogComponent],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

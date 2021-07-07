@@ -116,10 +116,10 @@ export class FormComponent implements OnInit, OnDestroy {
   }
 
   // Disable dates that haven't happened yet and dates after end date
-  startFilter = (d : moment.Moment): boolean => {
+  startFilter = (d: moment.Moment): boolean => {
     const day = d;
     const tomorrow = moment().add(1, 'days');
-    
+
     if ( this.end ) {
       return day < tomorrow && day < this.end;
     } else {
@@ -128,7 +128,7 @@ export class FormComponent implements OnInit, OnDestroy {
   }
 
   // Disable dates that haven't happened yet and dates before start date
-  endFilter = (d : moment.Moment) : boolean => {
+  endFilter = (d: moment.Moment): boolean => {
     const day = d;
     const tomorrow = moment().add(1, 'days');
 

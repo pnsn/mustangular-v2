@@ -1,129 +1,237 @@
 <div id="form" fxLayoutAlign="center center">
-    <mat-card fxFlex="100" fxFlex.gt-sm="60%">
-        
-        <div id="form-title" >
-          <div fxLayout="row" fxLayoutAlign="space-between space-around">
-              <h1>MUSTANGular v2.1</h1>
-              <p fxFlex="40">
-                  An app for displaying IRIS MUSTANG metrics on a map.
-                  <a href="https://github.com/pnsn/mustangular/wiki">More info...</a>
-              </p>
-          </div>
-          <mat-divider></mat-divider>
-          <h2> Enter your query below</h2>
+  <mat-card fxFlex="100" fxFlex.gt-sm="60%">
+    <div id="form-title">
+      <div fxLayout="row" fxLayoutAlign="space-between space-around">
+        <h1>MUSTANGular v2.1</h1>
+        <p fxFlex="40">
+          An app for displaying IRIS MUSTANG metrics on a map.
+          <a href="https://github.com/pnsn/mustangular/wiki">More info...</a>
+        </p>
+      </div>
+      <mat-divider></mat-divider>
+      <h2>Enter your query below</h2>
+    </div>
+
+    <form
+      #queryForm="ngForm"
+      (ngSubmit)="onSubmit()"
+      fxLayout="row"
+      fxLayoutGap="3%"
+    >
+      <div fxFlex="47" fxLayout="column">
+        <mat-form-field>
+          <input
+            matInput
+            placeholder="Network(s)"
+            name="net"
+            [(ngModel)]="query.net"
+            (ngModelChange)="query.net = query.net.toUpperCase()"
+          />
+          <button
+            mat-button
+            mat-icon-button
+            matSuffix
+            aria-label="Clear"
+            *ngIf="query.net"
+            (click)="query.net = ''"
+          >
+            <mat-icon>close</mat-icon>
+          </button>
+        </mat-form-field>
+
+        <mat-form-field>
+          <input
+            matInput
+            placeholder="Station(s)"
+            name="sta"
+            [(ngModel)]="query.sta"
+            (ngModelChange)="query.sta = query.sta.toUpperCase()"
+          />
+          <button
+            mat-button
+            *ngIf="query.sta"
+            matSuffix
+            mat-icon-button
+            aria-label="Clear"
+            (click)="query.sta = ''"
+          >
+            <mat-icon>close</mat-icon>
+          </button>
+        </mat-form-field>
+
+        <mat-form-field>
+          <input
+            matInput
+            placeholder="Location(s)"
+            name="loc"
+            [(ngModel)]="query.loc"
+            (ngModelChange)="query.loc = query.loc.toUpperCase()"
+          />
+          <button
+            mat-button
+            *ngIf="query.loc"
+            matSuffix
+            mat-icon-button
+            aria-label="Clear"
+            (click)="query.loc = ''"
+          >
+            <mat-icon>close</mat-icon>
+          </button>
+        </mat-form-field>
+
+        <mat-form-field>
+          <input
+            matInput
+            placeholder="Channel(s)"
+            name="cha"
+            [(ngModel)]="query.cha"
+            (ngModelChange)="query.cha = query.cha.toUpperCase()"
+          />
+          <button
+            mat-button
+            *ngIf="query.cha"
+            matSuffix
+            mat-icon-button
+            aria-label="Clear"
+            (click)="query.cha = ''"
+          >
+            <mat-icon>close</mat-icon>
+          </button>
+        </mat-form-field>
+
+        <mat-form-field>
+          <input
+            matInput
+            placeholder="Quality(s)"
+            name="qual"
+            [(ngModel)]="query.qual"
+            (ngModelChange)="query.qual = query.qual.toUpperCase()"
+          />
+          <button
+            mat-button
+            *ngIf="query.qual"
+            matSuffix
+            mat-icon-button
+            aria-label="Clear"
+            (click)="query.qual = ''"
+          >
+            <mat-icon>close</mat-icon>
+          </button>
+        </mat-form-field>
+
+        <div fxLayout="row" fxLayoutGap="5%">
+          <mat-form-field fxFlex="47.5%">
+            <input
+              matInput
+              [matDatepicker]="startDate"
+              placeholder="Start Date"
+              required
+              [matDatepickerFilter]="startFilter"
+              name="start"
+              [(ngModel)]="start"
+            />
+            <mat-datepicker-toggle
+              matSuffix
+              [for]="startDate"
+            ></mat-datepicker-toggle>
+            <mat-datepicker #startDate></mat-datepicker>
+          </mat-form-field>
+
+          <mat-form-field fxFlex="47.5%">
+            <input
+              matInput
+              [matDatepicker]="endDate"
+              required
+              placeholder="End Date"
+              [matDatepickerFilter]="endFilter"
+              name="end"
+              [(ngModel)]="end"
+            />
+            <mat-datepicker-toggle
+              matSuffix
+              [for]="endDate"
+            ></mat-datepicker-toggle>
+            <mat-datepicker #endDate></mat-datepicker>
+          </mat-form-field>
         </div>
-        
-        <form #queryForm="ngForm" (ngSubmit)="onSubmit()" fxLayout='row' fxLayoutGap="3%">
-            <div fxFlex="47" fxLayout='column'>
-                
-                <mat-form-field>
-                    <input matInput placeholder="Network(s)" name="net" [(ngModel)]="query.net"
-                      (ngModelChange)="query.net = query.net.toUpperCase()">
-                      <button mat-button mat-icon-button matSuffix aria-label="Clear"*ngIf="query.net" (click)="query.net=''">
-                          <mat-icon>close</mat-icon>
-                      </button>
-                </mat-form-field>
-                
-                <mat-form-field>
-                    <input matInput placeholder="Station(s)" name="sta" [(ngModel)]="query.sta" 
-                      (ngModelChange)="query.sta = query.sta.toUpperCase()">
-                    <button mat-button *ngIf="query.sta" matSuffix mat-icon-button aria-label="Clear" (click)="query.sta=''">
-                        <mat-icon>close</mat-icon>
-                    </button>
-                </mat-form-field>
-                
-                <mat-form-field>
-                    <input matInput placeholder="Location(s)" name="loc" [(ngModel)]="query.loc" 
-                      (ngModelChange)="query.loc = query.loc.toUpperCase()">
-                    <button mat-button *ngIf="query.loc" matSuffix mat-icon-button aria-label="Clear" (click)="query.loc=''">
-                        <mat-icon>close</mat-icon>
-                    </button>
-                </mat-form-field>
-                
-                <mat-form-field>
-                    <input matInput placeholder="Channel(s)" name="cha" [(ngModel)]="query.cha" 
-                      (ngModelChange)="query.cha = query.cha.toUpperCase()">
-                    <button mat-button *ngIf="query.cha" matSuffix mat-icon-button aria-label="Clear" (click)="query.cha=''">
-                        <mat-icon>close</mat-icon>
-                    </button>
-                </mat-form-field>
-              
-                <mat-form-field>
-                    <input matInput placeholder="Quality(s)" name="qual" [(ngModel)]="query.qual" 
-                      (ngModelChange)="query.qual = query.qual.toUpperCase()">
-                    <button mat-button *ngIf="query.qual" matSuffix mat-icon-button aria-label="Clear" (click)="query.qual=''">
-                        <mat-icon>close</mat-icon>
-                    </button>
-                </mat-form-field>
-                
-                <div fxLayout="row" fxLayoutGap="5%">
-                  <mat-form-field fxFlex="47.5%" >
-                      <input matInput [matDatepicker]="startDate" placeholder="Start Date" required  
-                        [matDatepickerFilter]="startFilter" name="start" [(ngModel)]="start">
-                      <mat-datepicker-toggle matSuffix [for]="startDate"></mat-datepicker-toggle>
-                      <mat-datepicker #startDate></mat-datepicker>
-                  </mat-form-field>
 
-                  <mat-form-field fxFlex="47.5%">
-                      <input matInput [matDatepicker]="endDate" required placeholder="End Date" 
-                        [matDatepickerFilter]="endFilter"  name="end" [(ngModel)]="end">
-                      <mat-datepicker-toggle matSuffix [for]="endDate"></mat-datepicker-toggle>
-                      <mat-datepicker #endDate></mat-datepicker>
-                  </mat-form-field>
-                </div>
-                
-                <span class="info-text" fxFlex>Dates (YYYY-MM-DD) start at beginning of day.</span>
-                <span class="info-text" fxFlex>Fields with * are required.</span>
+        <span class="info-text" fxFlex
+          >Dates (YYYY-MM-DD) start at beginning of day.</span
+        >
+        <span class="info-text" fxFlex>Fields with * are required.</span>
+      </div>
+
+      <div id="submit" fxFlex="50" fxLayout="column" fxLayoutAlign="end start">
+        <div
+          [ngSwitch]="selectedMetrics.length"
+          fxLayout="row"
+          fxLayoutAlign="space-between center"
+          id="selectedMetricsContainer"
+        >
+          <span *ngSwitchCase="0" class="warning info-text">
+            Select one or more metrics *
+          </span>
+          <span *ngSwitchCase="1" class="status info-text">
+            1 metric selected
+          </span>
+          <span *ngSwitchDefault class="status info-text">
+            {{ selectedMetrics.length }} metrics selected
+          </span>
+          <div id="clearMetrics" class="mat-form-field-suffix">
+            <button
+              mat-button
+              mat-icon-button
+              matSuffix
+              aria-label="Clear"
+              *ngIf="selectedMetrics.length > 0"
+              (click)="onClearMetrics()"
+            >
+              <mat-icon>close</mat-icon>
+            </button>
+          </div>
+        </div>
+
+        <mat-selection-list
+          dense
+          [ngModel]="selectedMetrics"
+          (ngModelChange)="onMetricSelect($event)"
+          name="metric"
+        >
+          <div fxLayout="column" *ngIf="loading" fxLayoutAlign="center center">
+            <div *ngIf="message">
+              {{ message }}
             </div>
-            
-            <div id="submit" fxFlex="50" fxLayout="column" fxLayoutAlign="end start"> 
-              
-              <div [ngSwitch]="selectedMetrics.length" fxLayout="row" fxLayoutAlign="space-between center" id="selectedMetricsContainer">
-                  <span *ngSwitchCase="0" class="warning info-text">
-                      Select one or more metrics *
-                  </span>
-                  <span *ngSwitchCase="1" class="status info-text">
-                      1 metric selected
-                  </span>
-                  <span *ngSwitchDefault class="status info-text">
-                      {{selectedMetrics.length}} metrics selected
-                  </span>
-                  <div id="clearMetrics" class="mat-form-field-suffix">
-                      <button mat-button mat-icon-button matSuffix aria-label="Clear" *ngIf="selectedMetrics.length > 0" (click)="onClearMetrics()">
-                        <mat-icon>close</mat-icon>
-                      </button>
-                  </div>
+            <fa name="spinner" animation="spin" size="2x"></fa>
+          </div>
 
-              </div>
+          <mat-list-option *ngFor="let metric of metrics" [value]="metric.name">
+            {{ metric.title }}
+          </mat-list-option>
+        </mat-selection-list>
 
+        <div
+          fxLayout="row"
+          fxFlexAlign="end"
+          fxLayoutGap="10px"
+          fxLayoutAlign="space-evenly center"
+        >
+          <div fxLayout="column" fxLayoutAlign="start">
+            <span class="info-text" fxFlex
+              >Empty fields, comma separated lists, and wildcards (? and *)
+              allowed.</span
+            >
+          </div>
 
-                     
-                <mat-selection-list [ngModel]="selectedMetrics" (ngModelChange)="onMetricSelect($event)" name="metric">
-                  <div fxLayout="column" *ngIf="loading" fxLayoutAlign="center center">
-                    <div *ngIf="message">
-                      {{message}}
-                    </div>
-                    <fa name="spinner" animation="spin" size="2x"></fa>
-                  </div>
-                  
-                  <mat-list-option *ngFor="let metric of metrics" [value]="metric.name">
-                    {{metric.title}}
-                  </mat-list-option>
-                  
-                </mat-selection-list>
-                
-                <div fxLayout="row" fxFlexAlign="end" fxLayoutGap="10px" fxLayoutAlign="space-evenly center">
-                 
-                  <div fxLayout="column" fxLayoutAlign="start">
-                    <span class="info-text" fxFlex>Empty fields, comma separated lists, and wildcards (? and *) allowed.</span>
-                  </div>
-
-                  <button mat-raised-button color="primary" type="submit" [disabled]="!(queryForm.form.valid && selectedMetrics.length > 0)">Submit</button>
-                </div>
-                
-            </div>
-
-        </form>
-        
-    </mat-card>
+          <button
+            mat-raised-button
+            color="primary"
+            type="submit"
+            [disabled]="!(queryForm.form.valid && selectedMetrics.length > 0)"
+          >
+            Submit
+          </button>
+        </div>
+      </div>
+    </form>
+  </mat-card>
 </div>

@@ -22,7 +22,6 @@ export class Channel {
   private average?: number; // Average channel value
   private max?: number; // Maximum channel value
   private min?: number; // Minimum channel value
-
   // Calculates the values for the channel
   private calculateValues(): void {
     if ( !this.values || this.values.length === 0 ) {
@@ -39,11 +38,48 @@ export class Channel {
     }
   }
 
-  // Calculates the median for the channel
-  getMedian(): number {
-    if ( !this.median ) {
-      this.calculateValues();
+  // returns the value for the given display option
+  getValue(displayValue: string): number {
+    let value: number;
 
+    this.calculateValues();
+
+    switch (displayValue) {
+      case 'Minimum' : {
+        value = this.getMin();
+        break;
+      }
+      case 'Maximum' : {
+        value = this.getMax();
+        break;
+      }
+      case 'Average' : {
+        value = this.getAverage();
+        break;
+      }
+      case 'Median' : {
+        value = this.getMedian();
+        break;
+      }
+      case '5th_Percentile' : {
+        value = this.getPercentile(5);
+        break;
+      }
+      case '95th_Percentile' : {
+        value = this.getPercentile(95);
+        break;
+      }
+      default : {
+        value = null;
+        break;
+      }
+    }
+    return value;
+  }
+
+  // Calculates the median for the channel
+  private getMedian(): number {
+    if ( !this.median ) {
       const mid = this.values.length / 2 - 0.5;
       let median: number;
 
@@ -59,10 +95,8 @@ export class Channel {
   }
 
   // Calculates the average value for the channel
-  getAverage(): number {
+  private getAverage(): number {
     if ( !this.average ) {
-      this.calculateValues();
-
       let sum = 0;
       for (const value of this.values) {
         sum += value;
@@ -75,22 +109,18 @@ export class Channel {
   }
 
   // Returns requested percentile, probably
-  getPercentile(percentile: number): number {
-    this.calculateValues();
-
+  private getPercentile(percentile: number): number {
     const index = Math.ceil(percentile / 100 * this.values.length);
     return index === this.values.length ? this.values[index - 1] : this.values[index];
   }
 
   // Returns the channel's maximum value
-  getMax(): number {
-    this.calculateValues();
+  private getMax(): number {
     return this.max;
   }
 
   // Returns the channel's minimum value
-  getMin(): number {
-    this.calculateValues();
+  private getMin(): number {
     return this.min;
   }
 

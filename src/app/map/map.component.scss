@@ -1,18 +1,17 @@
 @import "styles.scss";
 
+
 #header {
   font-family: "Helvetica Neue", sans-serif !important;
   font-weight: normal;
   position:fixed;
   z-index:20;
   top: 0px;
-  min-height: 70px;
+  min-height: $header-height;
   overflow:wrap;
   background-color: $background;
   .title {
-    color: $primary;
     display: inline;
-    font-size: 24px;
     margin-right: 15px;
   }
 }
@@ -21,7 +20,7 @@
   list-style-type: none;
   margin: 0;
   margin-top: 3px;
-  font-size: 20px;
+  font-size: 1.2rem;
   color: $secondary;
   padding: 0px;
   
@@ -35,9 +34,9 @@
 }
 
 mat-sidenav-container {
-  margin-top: 70px;
+  margin-top: $header-height;
   height:900px; /*fallback*/
-  height:calc(100% - 70px);
+  height:calc(100% - 60px);
   width:100%;
   position:fixed;
   #sidebar {
@@ -46,7 +45,7 @@ mat-sidenav-container {
 }
 
 #edit-query {
-  right:30px;
+  right:calc($header-height / 2);
   position:absolute;
   border-radius: 5px;
   border: solid 1px $border;

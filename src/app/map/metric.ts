@@ -34,10 +34,12 @@ export class Metric {
     const values = [];
 
     for (const s in this.stations) {
-      const station = this.stations[s];
-      // New value for the stations
-      station.setValue(this.display.displayValue, this.display.channels.available);
-      values.push(station.displayValue);
+      if (this.stations[s]) {
+        const station = this.stations[s];
+        // New value for the stations
+        station.setValue(this.display.colocatedType, this.display.displayValue, this.display.aggregateValue, this.display.channels.available);
+        values.push(station.displayValue);
+      }
     }
 
     values.sort(function(a, b) {return a - b; });
@@ -61,10 +63,12 @@ export class Metric {
   getChannels(): Array<string> {
     const channels = [];
     for (const s in this.stations) {
-      const station = this.stations[s];
-      for ( const c in station.channels ) {
-        if (channels.indexOf(c) < 0 ) {
-          channels.push(c);
+      if (this.stations[s]) {
+        const station = this.stations[s];
+        for ( const c in station.channels ) {
+          if (channels.indexOf(c) < 0 ) {
+            channels.push(c);
+          }
         }
       }
     }
@@ -76,10 +80,12 @@ export class Metric {
     const availableChannels = this.display.channels.available;
     const activeChannels = [];
     for (const s in this.stations) {
-      const station = this.stations[s];
-      const c = station.displayChannel.split('.')[1];
-      if (activeChannels.indexOf(c) < 0 ) {
-        activeChannels.push(c);
+      if (this.stations[s]) {
+        const station = this.stations[s];
+        const c = station.displayChannel;
+        if (activeChannels.indexOf(c) < 0 ) {
+          activeChannels.push(c);
+        }
       }
     }
     this.display.channels.active = availableChannels.filter(channel => activeChannels.indexOf(channel) > -1);

@@ -2,28 +2,15 @@
 
 #form {
   height:100%;
-  font-weight:normal;
   background-color: $background;
 
   #form-title {
-    h1 {
-      color: $primary;
-      margin-top:0px;
-      display: inline-block;
-    }
-    
     p {
       margin:0px;
       float:right;
       max-height:50px;
       overflow-y:scroll;
     }
-  }
-  
-  h2 {
-    color: $accent;
-    margin:10px 0px;
-    font-weight:500;
   }
   
   mat-form-field {
@@ -45,7 +32,7 @@
         vertical-align: baseline;
         font: inherit;
         .mat-icon {
-          font-size: 16px;
+          font-size: 1rem;
         }
       }
     }

@@ -97,9 +97,8 @@ export class DataService {
     if (channels.length > 0) {
       const displayChannels = [];
       for ( const channel of channels) {
-        const c = channel.split('.')[1];
-        if (displayChannels.indexOf(c) === -1 ) {
-          displayChannels.push(c);
+        if (displayChannels.indexOf(channel) === -1 ) {
+          displayChannels.push(channel);
         }
       }
       return displayChannels;
@@ -122,6 +121,18 @@ export class DataService {
         display.displayValue = this.parameters.displayValue;
       } else {
         display.displayValue = 'Average';
+      }
+
+      if (this.parameters.colocatedType) {
+        display.colocatedType = this.parameters.colocatedType;
+      } else {
+        display.colocatedType = 'channel';
+      }
+
+      if (this.parameters.aggregateValue) {
+        display.aggregateValue = this.parameters.aggregateValue;
+      } else if (display.colocatedType = 'aggregate') {
+        display.aggregateValue = 'Minimum';
       }
 
       display.invert = this.parameters.invert ? this.parameters.invert : false;

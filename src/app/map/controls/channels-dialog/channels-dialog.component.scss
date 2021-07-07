@@ -1,0 +1,44 @@
+@import "styles.scss";
+
+//Channels Dialog
+.mat-dialog-title{
+  margin-bottom: 5px;
+}
+
+#channels-list {
+  min-height: 40px;
+}
+
+p {
+  max-width: 300px;
+  overflow-wrap: normal;
+}
+
+mat-list {
+  mat-list-item{
+    border-top:dotted 1px $border;
+    border-bottom: none;
+    height: 35px !important;
+  }
+  .handle{
+    margin-right: 40px;
+    margin-left:-16px;
+  }
+   cursor: move;
+
+  /* ghostClass */
+  .ghost {
+    opacity: .5;
+  }
+  /* chosenClass */
+  .chosen {
+    border: none;
+    background-color: $background;
+  }
+  .mat-list-icon {
+    color: $secondary;
+  }
+  .active {
+    margin-left: 3px;
+  }
+}

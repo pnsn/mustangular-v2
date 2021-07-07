@@ -15,22 +15,39 @@ $background: #f2efe9;
 $border: #cccccc;
 $secondary: #707070;
 
+$header-height : 60px;
+
 html,body { 
   margin: 0px;
+  font-size: 14px;
   font-family: "Helvetica Neue", sans-serif !important;
   font-weight: normal;
   height: 100%;
 }
 
 .info-text {
-  font-size: 14px;
+  font-size: .9rem;
+  font-weight: 400;
+}
+
+.section-title {
+  font-size: 1.1rem;
   font-weight:400;
+  margin-bottom: 5px;
 }
 
 .form-title {
-  font-size: 20px;
-  font-weight:400px;
+  font-size: 1.3rem;
+  font-weight: 400;
   color : $primary;
+  display: inline;
+}
+
+.title {
+  font-size: 1.5rem;
+  font-weight: 400;
+  color : $primary;
+  display: inline;
 }
 
 .warning {
@@ -41,4 +58,16 @@ html,body {
 .status {
   font-weight: normal;
   color: $accent;
+}
+
+h2 {
+  color: $accent;
+  margin:10px 0px;
+  font-weight:500;
+}
+
+h1 {
+  color: $primary;
+  margin-top:0px;
+  display: inline-block;
 }

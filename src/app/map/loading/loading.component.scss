@@ -20,7 +20,7 @@
     width: 70%;
     min-height: 300px;
     font-weight:normal;
-    font-size:30px;
+    font-size:2rem;
     z-index:101;  
     display:inline-block;
     color: $secondary;
@@ -29,10 +29,10 @@
     }
     a {
       color: $accent;
-      font-size:18px;
+      font-size:1.5rem;
     }
     .info {
-      font-size:18px;
+      font-size:1.5rem;
       margin:5px;
     }
   }
